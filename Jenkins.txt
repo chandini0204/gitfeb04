@@ -1,0 +1,279 @@
+Jenkins is a continuous integration tool 
+
+Continuous Integration Tools
+============================
+1.Jenkins & Cloudbees Jenkins
+2. Bamboy 	--> This is not completely open source 
+3. Codeship
+4. circle CI
+5. Travis
+6. GitLab
+
+Jenkins
+=======
+--> Jenkins is a free open source and it will be available and cloudbees Jenkins is an enterprise edition both activities are same
+--> Jenkins is a free open source tool and continuous integration tool to automate the different services 
+--> Jenkins is a CI(Continuous Integration) server which manages and control process such as Plan, Code, Build, test, deploy operates and monitor in DevOps Environment.
+
+Plan: Architecture
+
+Code: Code is written by developer according to the project level it may be java developer or .net or c, c++, golack, or other technologies this is basing the architecture based on the project and nodeJS. So let us take our project is based on the Java so, java developers are writing the code next 
+
+Build: To build this code for this work there is application team is writing with the build code that is .xml application team in the sense testing team after giving this test so developer developing the code they will push the code into build team they will be checking keep on they will be based on developer code they will be writing with the pom.xml code they will be checking finally they will be do that test 
+
+Test: Whether the developer code is completely working fine or not after testing this they will push the code into our GitHub location
+
+Deploy: As devops engineer what we will do you will take all together code you can do the deployment strategies whose responsibility DevOps team after deploying we can operate 
+
+Operate and monitor: Whether the status of our application whether job is success or failure once it ready we are monitoring the server we are scheduling the job and keep on we are monitoring the server
+--> As a DevOps engineer if you want to do that CI/CD automation you have also DevOps code you also have the application code called build code and finally we can do the test after testing this 
+-->Developer developing the code 100 times or 200 times what they will do from their it is working file they can push this pom.xml(build team) build team according to developer they will be writing this pom.xml code so they will be writing the test cases they will be using the manual test, automation test so finally what will we do even application team also can able to write the 100 lines of code as DevOps engineer what we can do you can able to do the deployment using the deployment finally we can able to generate with the .jar(.javaarchive) if it is web application .war(.webarchive) if it is enterprise-level application .ear(enterprise archive file)
+--> Whatever the developers are writing with the 100s lines of code testing team is writing this code  
+--> as a DevOps engineer I'm going to generate simple jar file what happening it is developers are writing today 100 lines tomorrow 150 lines. 
+--> Every time they want to go with the other branches they want to develop little more they want to check whatever they are written the code whether it is success or not 
+--> as a DevOps engineer after using your Jenkins and CI/CD automation tools we just able to generate with the jar file it may be have 100 lines or it may be 50 lines don't need to worry about that we just generate with the simple jar file this jar file so why we are generating earlier what they want to do whatever they want to test their code again whatever they have written 100 lines of code they will be writing so developers are keep on doing means it is taking a lot of time sometimes to build the code for them taking 2 hours or 3 hours or 4 hours or 5 hours after generating .jar file it may takes half-hour or one-hour if it is biggest application also after taking this it may take a half-hour or one-hour so we are saving a developers code almost four hours per day it means for weekly 20 hours saving the  developers code companies only expecting from us that only 
+By using CI/CD automation we are saving a lot of time and we can do everything in the automation
+
+Jenkins - Pre-Requires installations
+=====================================
+The project type is for example it java based project
+1. firstly we have to install with the java -11 or java-1.8 version (java will have support 1.8 version for the Jenkins 1.7 will not support minimum is java 11 version) 
+2. To do the continuous integration from the DevOps team we are going to use source code (src) scm tool called git 
+3. maven
+4.Jenkins
+
+5. we need to generate with pwd(password)
+6. Install required plugins
+7. User credentials
+8. Connect the Jenkins dash board 
+Jenkins default port number is - 8080
+
+All together we are going to do that Jenkins master server
+Jenkins is purely working with plugins based support
+For example if you want to work any  application first you need to check whether the particular plugin is installed or not where we need to check 
+
+
+Process
+=======
+Launch the instance (Jenkins-Master) and the instance is ready 
+sudo -i 	-->go to the root directory 
+mkdir Jenkins	-->next create one directory 
+cd Jenkins	-->go into the directory 
+In real time don't go and install the java, maven, git, Jenkins before installing you need to check whether the java is installed or not
+java --version
+git --version
+maven --version or mvn -version
+Jenkins --version
+Generally we check the after installing of Jenkins  we can check with the status
+systemctl status Jenkins
+
+First we have to install the java and also we can install git first
+yum install git -y
+git --version
+2.47.1
+Java Installation
+-----------------
+yum install fontconfig java-11-openjdk
+y
+sudo amazon-linux-extras install java-openjdk11		--> The instance asks this command to run
+y
+alternatives --config java 				--> Why this command is implementing currently we are installing java11 earlier 1.8 or any other version it will be 							displayed 
+Copy the path and paste it here :/usr/lib/jvm/java-11-openjdk-11.0.25.0.9-1.amzn2.0.2.x86_64/bin/java
+/usr/lib/jvm/java-17-amazon-corretto.x86_64
+and we have enter to keep the current selection[+], or type selection number: 1 (enter 1)
+Then the java is install but we need to set up with environment 
+vim /etc/profile   		(/etc means list over some configuration files) --> For this command you can see the some system configuration files
+Set up
+-------
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.25.0.9-1.amzn2.0.2.x86_64/bin/java	--> Java home setup is done next you go to the export path 
+export PATH=$JAVA_HOME/bin:$PATH			--> this path is given by developer		it showing with the in out of our this configuration file 
+--> Where we take this path this java path is under is given by developer that to its one time activity most of the cases may we will do or not  
+Then save that file :wq
+source /etc/profile		--> Nothing is there means you doing perfectly
+echo $JAVA_HOME			--> It will showing the path and it is done perfectly
+That means java environment variable setup is completed  
+
+openjdk 11.0.25 2024-10-15 LTS
+OpenJDK Runtime Environment (Red_Hat-11.0.25.0.9-1.amzn2.0.2) (build 11.0.25+9-LTS)
+OpenJDK 64-Bit Server VM (Red_Hat-11.0.25.0.9-1.amzn2.0.2) (build 11.0.25+9-LTS, mixed mode, sharing)
+
+What is echo
+------------
+echo is a Unix/Linux command tool used for displaying lines of text or string which are passed as arguments on the command line.
+This is one of the basic command in Linux and most commonly used in shell scripts
+
+Maven Installation
+-------------------
+--> Maven also requires the environment variable how we have done for java same thing for maven also but one line command 
+yum install maven -y
+mvn --version
+Apache Maven 3.0.5 (Red Hat 3.0.5-17)
+Maven home: /usr/share/maven
+Java version: 11.0.25, vendor: Red Hat, Inc.
+Java home: /usr/lib/jvm/java-11-openjdk-11.0.25.0.9-1.amzn2.0.2.x86_64
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "5.10.237-230.949.amzn2.x86_64", arch: "amd64", family: "unix"
+
+Apache Maven 3.0.5 (Red Hat 3.0.5-17)
+Maven home: /usr/share/maven
+Java version: 11.0.25, vendor: Red Hat, Inc.
+Java home: /usr/lib/jvm/java-11-openjdk-11.0.25.0.9-1.amzn2.0.2.x86_64
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "5.10.237-230.949.amzn2.x86_64", arch: "amd64", family: "unix"
+
+Apache Maven 3.8.4 (Red Hat 3.8.4-3.amzn2023.0.5)
+Maven home: /usr/share/maven
+Java version: 17.0.15, vendor: Amazon.com Inc., runtime: /usr/lib/jvm/java-17-amazon-corretto.x86_64
+Default locale: en, platform encoding: UTF-8
+OS name: "linux", version: "6.1.140-154.222.amzn2023.x86_64", arch: "amd64", family: "unix"
+
+Now we want setup the maven home
+vim /etc/profile 
+export MAVEN_HOME=usr/share/maven
+Then save it next same as like java installation
+source /etc/profile
+echo $MAVEN_HOME
+Maven installation is complete with environmental variables
+
+
+Jenkins Installation
+---------------------
+We can install Jenkins like yum install Jenkins -y
+Before installing the Jenkins requires some repositories   for that go to the google and type Jenkins.io and go to download and we can see stable(LTS (means Long Term Support)) regular releases(Weekly)  we used to regularly we can  go in LTS only in real time also most of the cases they will go with the LTS they will not go with the weekly relase 
+Command to check that which operating system we are cat /etc/os-release
+With that select which package we want and click on copy that commands and implement it in the instance     --> After implementing in 200 OK means there is no issue it is working fine
+Next go with the second command paste it instance 
+After that there is a installation for the java don't go for that because we are already install the java go with the yum install jenkins
+The above two commands for the repositories 
+2.504.2
+
+After installing the jenkins you need to connect with the jenkins dashboard first --> take public ip address:8080
+
+Go to the instance 
+jenkins --version 
+
+wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+yum upgrade
+yum install java-17-amazon-corretto -y
+yum install jenkins -y
+
+systemctl enable jenkins
+Created symlink /etc/systemd/system/multi-user.target.wants/jenkins.service → /usr/lib/systemd/system/jenkins.service.
+systemctl start jenkins
+systemctl status jenkins
+
+systemctl status jenkins
+systemctl start jenkins
+systemctl status jenkins
+After start go to the google past the ip address:8080
+In that page we can create the password 
+For creating the password we need to uinlock the jenkins
+Copy the password is given in that page and go to the instnace use the command - cat paste it
+After that we get the password copy it come back to the jenkins page paste it in administrator password ad click on continue it is only one time activity 
+Then we want to install requires plugins then click on install suggested plugins then it is automatically installing  -in that pipelining, git, workplace cleanup, ant, gradle, timestamper, github cranch source, pipeline github groovy, pipeline stage view, ssh build agents, matrix authorization strategy, PAM authentication, LDAP, Email Extension, Mailer this all together we are using in the jenkins 
+Next step is user credentials 
+Usernmae
+user
+Password
+chandu@04
+Cofirm password
+chandu@04
+Full name
+user
+Email address
+user@gmail.com
+Then click on save and continue we can see instance cofiguration in that we have jenkins url daily we need to connect then click on save and finish then click on start using jenkins and finally jenkins is installation is done 
+Our setup is end to end is completed 
+
+After this Jenkins page is ready we connect with the ip address:8080
+
+What is Jenkins job?
+====================
+A Jenkins job is a sequential set of tasks that a user defines
+For example, job can fetch source code from version control, compile the code, run unit tests, and more. Note that in Jenkins, the term "job" is synonymous with the project
+
+there are so many types of jobs mainly two types of jobs
+2 types
+1. Freestyle job - Manual - UI
+2. Pipeline - Groovy Scripting - CI/CD
+
+What is freestyle Job?
+======================
+This is the central feature of Jenkins
+Jenkins will build your project, combining any SCM(Source Code Management) with any build system, and this can be even used for something other than software build.
+We are using git apart from that there so many tools like bitbucket, SVN, CBS, VCS, TFS(Team Foundation Server)
+
+
+Go to the Jenkins dashboard in that click on new item
+In that you want to enter an item name
+In that types of jobs
+freestyle project   		--> This is the central feature of jenkins
+pipeline
+multi-configuration project
+folder 
+multibranch pipeline
+organization folder
+organization folder and folder is connected
+
+Freestyle Project
+This is the central feature of Jenkins will build your project, combining any SCM with any build system, and this can be even used for something other than software build.
+Pipeline
+Orchestrates long-running activities that can span multiple build agents. Suitable for building pipelines (formerly known as workflows) and/or organizing complex activities that do not easily fit in free-style job type.
+Multi-configuration project
+Suitable for projects that need a large number of different configurations, such as testing on multiple environments, platform-specific builds, etc.
+Multibranch Pipeline
+Creates a set of Pipeline projects according to detected branches in one SCM repository.
+ 
+
+cd /var/lib/jenkins/
+cd jobs
+cd freestyle
+cd builds/
+ls
+
+
+
+
+Plugins
+========
+Jenkins is purely working with the plugin based support in that we want svn option in SCM we need to install svn so before installing with svn the plugin should available 
+If you plugin svn option will be available 
+First open the duplicate dashboard
+first click on manage Jenkins and there is a manage plugins  then go to the installed tab  and go to the available search that svn and click on Subversion tool and 
+There are two options called Install without restart and Download now and install after restart
+Generally what we do in windows we install any software and restart our windows here you won't implement this command called Download now and install after restart you have to install without restart what will happen to click on Download now and install after restart in this Jenkins dashboard many developers are using and they are running the job if you do that restart it will effect their job and also sometimes it will be upgrading the versions it will be very biggest challenging in real time don't and never use this command in real time if you want to it take a proper approval this is very dangerous option 
+You have to select install without restart 
+Then go to the original page and refresh it and see there is a svn option also will be there 
+
+In manage plugin
+update -- it is used to update the version from 1 to 2 you can click and update it
+Available -- it shows the available plugins and you install it here 
+Installed -- here you can see Jenkins installed tools
+Advanced -- this si the configuration of HTTP Proxy Configuration 
+
+In real time sometimes there is no option like manage Jenkins option because jenkin administrator restricted this why you know why because other people they can't install any software without their permission so what can I do if you want to install any kind of plugin like this by seeing this dashboard they will give the page url we have to login this url like this you have to login 
+
+Configure System
+Configure global settings and paths. 
+
+
+What is pipeline?
+==================
+Orchestrates long-running activities that can span multiple build agents.
+Suitable for building pipelines (formerly known as workflows) and/or organizing complex activities that do not easily fit free-style job type.
+
+Pipeline job
+------------
+For Jenkins we are going writing with the groovy scripting for completely automation job purpose
+There are two different types of pipeline jobs is there 
+1. Scripted pipeline  -- This pipeline is very old one now not much people are using -- scripted pipeline will define with the node level and starts with the node
+2. Declarative pipeline  -- it is also called as groovy scripting -- it is defined with the pipeline and starts with the pipeline 
+Declarative pipeline will defining with the different stages 
+For example if one stage is failure you can go and check with the specific stage only and also give the reason for failure that is the advantage 
+if you write with the scripted pipeline if any stage is failure you cannot see which stage is failure you want to check from the starting to end (Complete code) 
+
+5 types of stages majorly
+-------------------------
+1. 
