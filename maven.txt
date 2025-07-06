@@ -1,0 +1,146 @@
+Maven
+=====
+Maven is a build tool 
+
+build tool of maven
+--------------------
+
+1. Compile :
+-------------
+Convert into machine understandable language 
+2. Code Review
+--------------
+Reporting task, code analysis report - PMD Tool    ---it is only for review of the code
+3. Unit Test
+-------------
+Execution of test cases, test report(pass or fail)
+After the testing is completed by the testing team as a devops engineer we will go use with the unit test. Unit test will show execution of test cases like test report, total how any test cases are there in out of how many test cases are success how many are failure and what is the pending (how many are pending) 
+4. Code Coverage 
+-----------------
+% code covered by the test executes, coverage report
+Code coverage is covered by the test cases and cover aging report we can see 
+5. Package
+-----------
+Its convert into .jar, .war, .ear
+Whatever 4 steps we are following it will be converted into .jar, .war, .ear this is also called as artifact 
+
+And other people also we can use SonarQube for static code analysis to improve code quality and security in software development projects. SonarQube is an open-source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs and code smells on 29 programming languages. And also it is using for the coverage.
+Because it is for maven that's why we use code review
+
+Now we have seen right developers code testing code 150 lines, 200 lines each every time if you want to run the job it will take a lot of time in real time application if you want to run developers want to check any deployment strategies they used to wait 5 to 6 hours per day as a devops engineer we have join the everything we have taken their code and we have return with the groovy script we have converted with this .jar, .war, .ear
+Developers saving a lot of time and their working now we are doing with the automation to do 4 thing together we are just creating with the .jar file 
+(Madam :From next time onwards going forward complete automation I will not going to test above 4 stages I just take with the package whatever the artifact is generated that specific package iam going to integrate that is my going forward complete CI/CD automation it is very important if you understand now further it is very useful for the CI/CD automation )
+
+Build Life cycle
+----------------
+They were different phases
+
+validate - validate the project is correct and all necessary information is available -- maven is a build tool apart from the maven thre is two different tools are there one for Ant one for Gredle ant is little bit older version 2013 to 2014 everyone using the Ant and Gredel is the enterprise version and it is a paid versionin real time also we are using maven only 
+Actually developers  initially they will start with xml version and also they will start with the projectID, groupID everything so the validate will be showing that whether information is correct or not so if you want to check you just change with the project information that's it this(its) entire code this not your responsible to write it this is responsible to wrriten by application team   
+compile - compile the source code of the project
+test - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
+package - take the compiled code and package it in its distributable format, such as a JAR.
+verify - run any checks on result of integration tests to ensure quality criteria are met
+install - install the package into the local repository, for use as a dependency in other projects locally
+deploy - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
+
+
+Why Jenkins is very popular
+============================
+open source
+Good plugin support 
+Good community support 
+Fast and reliable 
+Good OS support 
+Scripted build 
+
+Features of Jenkins
+====================
+Easy installation process 
+provides advance security
+upgrades are easily available
+light weight container support
+Distributed Team Management 
+
+
+
+creation of a job
+==================
+#1 Jenkins --> New Item --> Job1 --> shell command --> echo 'this is my first job'
+Save --> click in build now --> click on build number --> click on console to see output 
+
+#2 Jenkins --> New Item --> Job2 --> shell command -->
+date >> /tmp/date.txt
+echo 'this is my second job'
+save --> click on build now --> click on build number --> click on console to see output 
+
+
+
+Creation of new user
+=====================
+Jenkins --> Manage Jenkins -->Create/Add users --> left side --> add user
+Add name as Dev --> Last Name --> Password --> Confirm password --> Email --> submit
+
+New user created 
+
+Jenkins is very important CI/CD we are going to do in the Jenkins as well as CI in Jenkins CD into Docker both the things are we are going to do it this is very important in real time also it is almost same work but here and there the code is different 
+
+After creating a user we want to give some restrictions for rights of new-user without any restrictions the new-user can do any changes of our entire application we want to restrict the new-user 
+
+
+Manage Authorization
+====================
+
+Matrix based security 
+
+Go to Manage Jenkins --> configure Global security --> Authorization section --> Select Matrix based security 
+--> Click on add users --> write admin --> give administration access
+--> click on add --> write dev --> give read access and job read access
+--> Logout as admin --> login as dev --> no jobs, only read access 
+--> Logout as dev --> Login as admin
+
+
+Project
+
+
+The build trigger is the manual automation
+upstream and down stream
+build triggers
+1st option 
+Trigger builds remotely (e.g., from scripts) -- JENKINS_URL/job/free/build?token=TOKEN_NAME, http://54.211.20.129:8080/job/free/configure from this both we have to give the developer is http://54.211.20.129:8080/job/free/build?token=token1
+--> It is used for the for example if we have to attend the developers work at midnight but for us difficult in many days in midnight so we create a token and give the token details to the developers for the specific required file to the developer so we don't need wait for the midnight
+2nd option
+Build after other projects are build --> In this we can see upstream and downstream 
+give the existed file name   trigger only if build is stable that means if the build is correct then only you can trigger it that means trigger means execute the job 
+Trigger even if the build is unstable if you build is not correct also we are telling that to trigger to get the output 
+3rd option
+Build periodically 
+
+cron tab job
+=============
+5 imp points
+1. Minute -for one hour 60 minutes is there -- minute starts from 0(0 means 1 minute) and ends with 59(60 minutes) 0-59
+2. Hour --hour also starts from 0 and ends with 23 - per day we have 24 hours
+3. Date of the Month - DOM  --  1-31
+4. Month -- 1-12
+5. Dow - Date of the week - 0-7 (0 means Monday 7 means Sunday)
+We can't trigger the job for in every 30 seconds because there is no option at all 
+
+scenario my job should run every friday8:30 am 
+===============================================
+29 7 4/11/18/25 * 5		--> Try to know the UK time schedule it  
+29 1 18 * 5                     --> Apply and save it
+
+* * * * * 
+
+Jenkins purely working with plugins
+Email Notification
+==================
+If we want to configure our email notification first we want to check whether email notification plugin is installed or not 
+If we want to check it first we have to go Jenkins dashboard then go to plugin manager in that go to the installed in that we can see that email notification plugin is installed or not
+
+4th option 
+GitHub hook trigger for GITScm polling 		---> If you want to run this GitHub hook trigger for GITScm polling so what we have to do you are enabling that's fine you are enabling in the Jenkins dashboard that's fine but you should integrate in the GitHub location this is frequently using in the real time also
+After click on the GitHub hook trigger after apply and save that is not build job after that we want to schedule the job 
+To schedule the job
+Go to the GitHub account  
