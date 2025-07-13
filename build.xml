@@ -18,3 +18,35 @@
     </target>
 
 </project>
+
+<project name="CreateWar" default="war" basedir=".">
+
+    <!-- Set properties -->
+    <property name="src.dir" value="." />
+    <property name="build.dir" value="build" />
+    <property name="dist.dir" value="dist" />
+    <property name="war.name" value="AntExample.war" />
+
+    <!-- Clean old builds -->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+        <delete dir="${dist.dir}" />
+    </target>
+
+    <!-- Compile all Java files -->
+    <target name="compile">
+        <mkdir dir="${build.dir}" />
+        <javac srcdir="${src.dir}" destdir="${build.dir}">
+            <include name="/*.java"/>
+        </javac>
+    </target>
+
+    <!-- Create WAR file -->
+    <target name="war" depends="compile">
+        <mkdir dir="${dist.dir}" />
+        <war destfile="${dist.dir}/${war.name}" webxml="WEB-INF/web.xml">
+            <fileset dir="${build.dir}" />
+        </war>
+    </target>
+
+</project>
