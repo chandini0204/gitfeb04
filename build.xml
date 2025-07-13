@@ -1,0 +1,20 @@
+<project name="SimpleJavaBuild" basedir="." default="compile">
+
+    <!-- Set properties -->
+    <property name="src.dir"     value="." />
+    <property name="build.dir"   value="build" />
+
+    <!-- Clean build folder -->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+    <!-- Compile Java files -->
+    <target name="compile">
+        <mkdir dir="${build.dir}" />
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+            <include name="/*.java"/>
+        </javac>
+    </target>
+
+</project>
