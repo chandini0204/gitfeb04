@@ -1,52 +1,32 @@
-<project name="SimpleJavaBuild" basedir="." default="compile">
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="antjob" default="build" basedir=".">
 
-    <!-- Set properties -->
-    <property name="src.dir"     value="." />
-    <property name="build.dir"   value="build" />
+    <!-- Define the build directory -->
+    <property name="build.dir" value="build"/>
 
-    <!-- Clean build folder -->
-    <target name="clean">
-        <delete dir="${build.dir}" />
+    <!-- Define the source directory -->
+    <property name="src.dir" value="src"/>
+
+    <!-- Define the target directory -->
+    <property name="target.dir" value="target"/>
+
+    <!-- Create the build directory -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
     </target>
 
-    <!-- Compile Java files -->
-    <target name="compile">
-        <mkdir dir="${build.dir}" />
-        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
-            <include name="/*.java"/>
-        </javac>
+    <!-- Compile the source code -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}"/>
     </target>
 
-</project>
-
-<project name="CreateWar" default="war" basedir=".">
-
-    <!-- Set properties -->
-    <property name="src.dir" value="." />
-    <property name="build.dir" value="build" />
-    <property name="dist.dir" value="dist" />
-    <property name="war.name" value="AntExample.war" />
-
-    <!-- Clean old builds -->
-    <target name="clean">
-        <delete dir="${build.dir}" />
-        <delete dir="${dist.dir}" />
+    <!-- Create the JAR file -->
+    <target name="jar" depends="compile">
+        <jar destfile="${target.dir}/antjob.jar" basedir="${build.dir}"/>
     </target>
 
-    <!-- Compile all Java files -->
-    <target name="compile">
-        <mkdir dir="${build.dir}" />
-        <javac srcdir="${src.dir}" destdir="${build.dir}">
-            <include name="/*.java"/>
-        </javac>
+    <!-- Default target -->
+    <target name="build" depends="jar">
+        <echo message="Build successful"/>
     </target>
-
-    <!-- Create WAR file -->
-    <target name="war" depends="compile">
-        <mkdir dir="${dist.dir}" />
-        <war destfile="${dist.dir}/${war.name}" webxml="WEB-INF/web.xml">
-            <fileset dir="${build.dir}" />
-        </war>
-    </target>
-
 </project>
