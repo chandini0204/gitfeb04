@@ -1,6 +1,16 @@
 <project>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.howtodoinjava</groupId>
-  <artifactId>MavenExample</artifactId>
-  <version>1.0.0</version>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.howtodoinjava</groupId>
+    <artifactId>MavenExample</artifactId>
+    <version>1.0.0</version>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.16.0</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
