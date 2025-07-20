@@ -1,3 +1,8 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
-         version="3.0">
+	version="3.0">
+	<war destfile="AntExample.war" ...>
+    <!-- war file contents -->
+</war>
+
+
 </web-app>
