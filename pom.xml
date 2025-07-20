@@ -65,7 +65,7 @@
                     </execution>
                     <execution>
                         <id>report</id>
-                        <phase>prepare-package</phase>
+                        <phase>site</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
