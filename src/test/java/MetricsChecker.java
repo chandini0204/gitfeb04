@@ -32,7 +32,7 @@ public class MetricsChecker {
                             System.exit(1); // Fail the build
                         }
                     } else if (metric.equals("errorRate")) {
-                        if (value > errorRateThreshold) {
+                    if (value > errorRateThreshold) {
                             System.out.println("Error rate exceeded threshold: " + value + " > " + errorRateThreshold);
                             System.exit(1); // Fail the build
                         }
@@ -41,14 +41,16 @@ public class MetricsChecker {
                             System.out.println("Throughput below threshold: " + value + " < " + throughputThreshold);
                             System.exit(1); // Fail the build
                         }
-                      }
+                    }
                 }
             }
 
-            scanner.close();
+scanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("Metrics file not found: " + metricsFile);
             System.exit(1); // Fail the build
         }
     }
 }
+
+
