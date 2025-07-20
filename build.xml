@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="antjob" default="build" basedir=".">
-
     <!-- Define the build directory -->
     <property name="build.dir" value="build"/>
-
     <!-- Define the source directory -->
     <property name="src.dir" value="src"/>
-
     <!-- Define the target directory -->
     <property name="target.dir" value="target"/>
-
     <!-- Create the build directory -->
     <target name="init">
-        <mkdir dir="${build.dir}"/>
+	    <mkdir dir="${build.dir}"/>
+	   <mkdir dir="dist"/>
     </target>
-
     <!-- Compile the source code -->
     <target name="compile" depends="init">
-        <javac srcdir="${src.dir}" destdir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"/>
     </target>
-
-    <!-- Create the JAR file -->
-    <target name="jar" depends="compile">
-        <jar destfile="${target.dir}/antjob.jar" basedir="${build.dir}"/>
+    <!-- Create the WAR file -->
+    <target name="war" depends="compile">
+        <war destfile="${target.dir}/AntExample.war" webxml="WebContent/WEB-INF/web.xml">
+            <fileset dir="WebContent"/>
+            <classes dir="${build.dir}"/>
+        </war>
     </target>
-
     <!-- Default target -->
-    <target name="build" depends="jar">
+    <target name="build" depends="war">
         <echo message="Build successful"/>
     </target>
 </project>
+
